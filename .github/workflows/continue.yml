@@ -1,4 +1,4 @@
-name: If Workflow
+name: Continue Workflow
 on:
   push:
     branches:
@@ -38,7 +38,7 @@ jobs:
         id: testing
         run: npm run test
       - name: Upload test report
-        if: failure() && steps.testing.outcome == 'failure'
+        continue-on-error: true
         uses: actions/upload-artifact@v3
         with:
           name: test-report
